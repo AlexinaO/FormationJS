@@ -62,47 +62,13 @@
         </div>
         <div id="editor-right">
           <form>
-            <label for="editor_images">Image</label>
+            <h3>Contenu</h3>
+            <label for="editor_image">Image</label>
             <br />
-            <select name="imageId" id="editor_images">
+            <select name="imageId" id="editor_image">
               <option value="-1">Pas d'image</option>
             </select>
-            <br />
-            <label for="editor_positionX">Position X</label>
-            <br />
-            <input
-              type="number"
-              name="positionX"
-              id="editor_positionX"
-              min="0"
-            />
-            <br />
-            <label for="editor_positionY">Position X</label>
-            <br />
-            <input
-              type="number"
-              name="positionY"
-              id="editor_positionY"
-              min="0"
-            />
-            <br />
-            <label for="editor_fontWeight">Font Weight</label>
-            <br />
-            <input
-              type="number"
-              name="fontWeight"
-              id="editor_fontWeight"
-              min="100"
-              max="900"
-            />
-            <br />
-            <label for="editor_fontSize">Font Size</label>
-            <br />
-            <input type="number" name="fontSize" id="editor_fontSize" />
-            <br />
-            <label for="editor_color">Color</label><br />
-            <input type="color" name="textColor" id="editor_color" />
-            <br />
+            <hr />
             <label for="editor_text">Texte du meme</label>
             <br />
             <input
@@ -111,15 +77,64 @@
               id="editor_text"
               placeholder="texte du meme"
             />
-            <br />
-            <input type="checkbox" name="underline" id="editor_underline" />
-            <label for="editor_underline"> underline</label>
-            <br />
-            <input type="checkbox" name="italic" id="editor_italic" />
-            <label for="editor_italic"> italic</label>
             <hr />
-            <button type="reset">RESET</button>
-            <button type="submit">VALIDER</button>
+            <h3>Position</h3>
+            <div class="cols">
+              <div>
+                <label for="editor_x">X</label><br />
+                <input min="0" type="number" name="x" id="editor_x" value="0" />
+              </div>
+              <div>
+                <label for="editor_y">Y</label><br />
+                <input min="0" type="number" name="y" id="editor_y" value="0" />
+              </div>
+            </div>
+            <hr />
+            <h3>Style</h3>
+            <div class="cols">
+              <div>
+                <label for="editor_font_size">Size</label><br />
+                <input
+                  min="0"
+                  type="number"
+                  name="font-size"
+                  id="editor_font_size"
+                  value="1"
+                />
+              </div>
+              <div>
+                <label for="editor_font_weight">Weight</label><br />
+                <input
+                  min="100"
+                  step="100"
+                  max="900"
+                  type="number"
+                  name="font-weight"
+                  id="editor_font_weight"
+                  value="500"
+                />
+              </div>
+            </div>
+            <div class="cols">
+              <div>
+                <label for="editor_underline">underline</label><br />
+                <input type="checkbox" name="underline" id="editor_underline" />
+              </div>
+              <div>
+                <label for="editor_italic">italic</label><br />
+                <input type="checkbox" name="italic" id="editor_italic" />
+              </div>
+            </div>
+            <label for="editor_color">Color</label><br />
+            <input
+              type="color"
+              name="color"
+              id="editor_color"
+              value="#0ACAC0"
+            />
+            <hr />
+            <button type="reset" class="btn btn-danger">reset</button>
+            <button type="submit" class="btn btn-success">validation</button>
           </form>
         </div>
       </div>
