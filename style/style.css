@@ -1,10 +1,14 @@
+body{
+	height: 83.5vh;
+}
 #footer{
-	position :absolute;
+	position :fixed;
 	bottom : 2px;
 	text-align: center;
 	width: 90%;
 	left: 5%;
 	right: 5%;
+	z-index: 100;
 }
 
 #header{
@@ -12,6 +16,7 @@
 	padding: 15px;
 	font-weight: 900;
 	color: blueviolet;
+	text-decoration:  underline grey;
 }
 
 #dot{
@@ -21,4 +26,26 @@
 #js{
 	color:red;
 	font-style: italic;
+}
+
+#wrapper{ height: 100%;}
+
+#editor{
+	display: flex;
+	height: 100%;
+}
+
+
+
+#editor>div:nth-child(1){
+	flex-grow: 1;
+}
+
+#editor>div{
+	padding: 5px 15px;
+}
+
+#editor>div:nth-child(2){
+	min-width: 200px;
+	border-left: 1px solid black;
 }
