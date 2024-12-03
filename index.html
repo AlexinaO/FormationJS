@@ -60,7 +60,68 @@
             <text x="10" y="400" font-size="200px">DEMAT</text>
           </svg>
         </div>
-        <div id="editor-right">right</div>
+        <div id="editor-right">
+          <form>
+            <label for="editor_images">Image</label>
+            <br />
+            <select name="imageId" id="editor_images">
+              <option value="-1">Pas d'image</option>
+            </select>
+            <br />
+            <label for="editor_positionX">Position X</label>
+            <br />
+            <input
+              type="number"
+              name="positionX"
+              id="editor_positionX"
+              min="0"
+            />
+            <br />
+            <label for="editor_positionY">Position X</label>
+            <br />
+            <input
+              type="number"
+              name="positionY"
+              id="editor_positionY"
+              min="0"
+            />
+            <br />
+            <label for="editor_fontWeight">Font Weight</label>
+            <br />
+            <input
+              type="number"
+              name="fontWeight"
+              id="editor_fontWeight"
+              min="100"
+              max="900"
+            />
+            <br />
+            <label for="editor_fontSize">Font Size</label>
+            <br />
+            <input type="number" name="fontSize" id="editor_fontSize" />
+            <br />
+            <label for="editor_color">Color</label><br />
+            <input type="color" name="textColor" id="editor_color" />
+            <br />
+            <label for="editor_text">Texte du meme</label>
+            <br />
+            <input
+              type="text"
+              name="text"
+              id="editor_text"
+              placeholder="texte du meme"
+            />
+            <br />
+            <input type="checkbox" name="underline" id="editor_underline" />
+            <label for="editor_underline"> underline</label>
+            <br />
+            <input type="checkbox" name="italic" id="editor_italic" />
+            <label for="editor_italic"> italic</label>
+            <hr />
+            <button type="reset">RESET</button>
+            <button type="submit">VALIDER</button>
+          </form>
+        </div>
       </div>
     </div>
     <div id="footer" class="bold">Copyright &copy; Alexina 2024</div>
