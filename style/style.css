@@ -6,3 +6,19 @@
 	left: 5%;
 	right: 5%;
 }
+
+#header{
+	font-size: 25px ;
+	padding: 15px;
+	font-weight: 900;
+	color: blueviolet;
+}
+
+#dot{
+	color:black;
+}
+
+#js{
+	color:red;
+	font-style: italic;
+}
