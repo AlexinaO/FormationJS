@@ -8,9 +8,15 @@ function loadingDOM() {
   jsnotif.innerHTML = 'JS <span style="font-weight:900; color:red;">OK</span>';
   document
     .querySelector("#header > button")
-    .addEventListener("click", function () {
+    .addEventListener("click", function (evt) {
+      evt.stopPropagation();
+      console.log("button header", evt);
       console.log("J'ai cliqué sur le bouton !");
     });
+  document.querySelector("#header").addEventListener("click", function (evt) {
+    console.log("header", evt);
+    console.log("header cliqué !");
+  });
 }
 
 // loadingDOM();
