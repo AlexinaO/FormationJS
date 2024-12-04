@@ -39,6 +39,7 @@ function Router(rootFolderOfTemplates = "/pages") {
       }
       console.log("reponse", xhr.response);
     };
+    xhr.send();
   }
 
   /*Définition des accès extérieurs à l'instance*/
