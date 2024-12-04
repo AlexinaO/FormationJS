@@ -31,6 +31,8 @@ function loadNavbarEvents() {
   allLinks.forEach(function (element) {
     element.addEventListener("click", (evt) => {
       evt.preventDefault();
+      //   history.pushState(null, null, element.href);
+      history.pushState(null, null, evt.target.href);
       console.log("loadNavbarEvents");
     });
   });
