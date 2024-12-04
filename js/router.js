@@ -69,7 +69,7 @@ function Router(rootFolderOfTemplates = "/pages") {
         url += "/home/home.html";
         break;
     }
-    getcontentFromNetwork();
+    getcontentFromNetwork(url);
     loadContentInPage();
   }
 }
