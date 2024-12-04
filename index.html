@@ -13,33 +13,25 @@
   <body>
     <div id="js-notification">JS non chargé dans la page</div>
     <div id="header">Meme<span id="dot">.</span><span id="js">js</span></div>
-    <div id="navbar" class="bold">
+    <div id="navbar">
       <nav
         class="navbar navbar-expand-sm navbar-dark bg-dark"
         data-bs-theme="dark"
       >
         <div class="container">
-          <a class="navbar-brand" href="#">Navbar</a>
-          <button
-            class="navbar-toggler d-lg-none"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#collapsibleNavId"
-            aria-controls="collapsibleNavId"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
+          <a class="navbar-brand active" href="/">Home</a>
           <div class="collapse navbar-collapse" id="collapsibleNavId">
             <ul class="navbar-nav me-auto mt-2 mt-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" href="#" aria-current="page"
-                  >Home <span class="visually-hidden">(current)</span></a
+                <a class="nav-link" href="/thumbnail" aria-current="page"
+                  >Thumbnail</a
                 >
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link" href="/edit">New</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/edit/1">Edit id:1</a>
               </li>
             </ul>
           </div>
