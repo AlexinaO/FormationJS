@@ -19,6 +19,7 @@ function loadingDOM() {
   //     console.log("header cliqué !");
   //   });
   loadNavbarEvents();
+  //   loadEditorEvens();
 }
 
 // loadingDOM();
