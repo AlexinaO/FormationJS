@@ -26,7 +26,20 @@ function Router(rootFolderOfTemplates = "/pages") {
   }
 
   function loadContentInPage(eventLoader) {}
-  function getcontentFromNetwork(contentUri) {}
+  function getcontentFromNetwork(contentUri) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", contentUri);
+    xhr.onreadystatechange = function (evt) {
+      if (xhr.readyState < XMLHttpRequest.DONE) {
+        return;
+      }
+      if (xhr.status >= 400) {
+        /*304 répète*/
+        console.log("erreur", xhr.status);
+      }
+      console.log("reponse", xhr.response);
+    };
+  }
 
   /*Définition des accès extérieurs à l'instance*/
   /**
@@ -44,6 +57,18 @@ function Router(rootFolderOfTemplates = "/pages") {
   this.navigate = navigate;
   function navigate(pathName = "/") {
     changePathName(pathName);
+    var url = rootFolderOfTemplates;
+    switch (pathName) {
+      case "/thumbnail":
+        url += "/thumbnail/thumbnail.html";
+        break;
+      case "/editor":
+        url += "/editor/editor.hmtl";
+        break;
+      default:
+        url += "/home/home.html";
+        break;
+    }
     getcontentFromNetwork();
     loadContentInPage();
   }
