@@ -1,3 +1,22 @@
+var routes = [
+  {
+    name: "Thumbnail",
+    path: "/thumbnail",
+    url: "/pages/thumbnail/thumbnail.html",
+  },
+  {
+    name: "Editor",
+    path: "/edit",
+    url: "/pages/editor/editor.html",
+    loaderJS: loadEditorEvent,
+  },
+  {
+    nmae: "Home",
+    path: "/",
+    url: "/pages/home/home.html",
+  },
+];
+
 /*
 	public -> sur this
 		+page actuelle champ en lecture
