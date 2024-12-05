@@ -42,22 +42,15 @@ function Router(rootNode, rootFolderOfTemplates = "/pages") {
   function changePathName(pathName) {
     history.pushState(null, null, pathName);
     var route = undefined;
+    var m;
 
-    route = routes.find((route) => route.path === pathName);
-
-    // route.url = rootFolderOfTemplates;
-    // switch (pathName) {
-    //   case "/thumbnail":
-    //     route.url += "/thumbnail/thumbnail.html";
-    //     break;
-    //   case "/editor":
-    //     route.url += "/editor/editor.html";
-    //     route.loaderJS = loadEditorEvent;
-    //     break;
-    //   default:
-    //     route.url += "/home/home.html";
-    //     break;
-    // }
+    route = routes.find((r) => {
+      m = r.path.exec(pathName);
+      return m !== null;
+    });
+    if (undefined !== route) {
+      route.params = m.groups;
+    }
     route.pathName = pathName;
     currentRoute = route;
   }
