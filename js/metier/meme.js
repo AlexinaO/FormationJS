@@ -1,3 +1,6 @@
+/**
+ * Class de gestion  d'un meme
+ */
 class Meme {
   id = undefined; //gérée par le serveur
   text = "";
@@ -16,7 +19,8 @@ class Meme {
   }
 
   save() {
-    console.log("save at ", this.#endpoint, this);
+    // console.log("save at ", this.#endpoint, this);
+    console.log("save ", this.id, " at", this.#endpoint, this);
     this.publicSave();
     this.#privateSave();
   }
