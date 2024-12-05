@@ -78,7 +78,7 @@ function Router(rootNode, rootFolderOfTemplates = "/pages") {
         console.log("erreur", xhr.status);
         return;
       }
-      console.log("reponse", xhr.responseText);
+      //   console.log("reponse", xhr.responseText);
       routeObject.template = xhr.responseText;
       loadContentInPage(routeObject);
     };
