@@ -17,7 +17,7 @@
  * Il serait possible de mettre l'adresse actuelle mais c'est une variable globale donc il y a accès
  * @param {string} rootFolderOfTemplates nom du répertoire des pages
  */
-function Router(rootFolderOfTemplates = "/pages") {
+function Router(rootNode, rootFolderOfTemplates = "/pages") {
   /* Définitions locales des propriétés et fonctions*/
   var currentRoute = location.pathname;
   function changePathName(pathName) {
@@ -25,10 +25,20 @@ function Router(rootFolderOfTemplates = "/pages") {
     currentRoute = location.pathname;
   }
 
-  function loadContentInPage(eventLoader) {}
-  function getcontentFromNetwork(contentUri) {
+  /**
+   * Va chercher dans le DOM pour mettre le contenu
+   * @param {Object} routeObject
+   */
+  function loadContentInPage(routeObject) {
+    rootNode.innerHTML = routeObject.responseText;
+    if (typeof (routeObject.loaderJS === "function")) {
+      routeObject.loaderJS();
+    }
+  }
+
+  function getcontentFromNetwork(routeObject) {
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", contentUri);
+    xhr.open("GET", routeObject.url);
     xhr.onreadystatechange = function (evt) {
       if (xhr.readyState < XMLHttpRequest.DONE) {
         return;
@@ -36,8 +46,11 @@ function Router(rootFolderOfTemplates = "/pages") {
       if (xhr.status >= 400) {
         /*304 répète*/
         console.log("erreur", xhr.status);
+        return;
       }
-      console.log("reponse", xhr.response);
+      console.log("reponse", xhr.responseText);
+      routeObject.template = xhr.responseText;
+      loadContentInPage(route);
     };
     xhr.send();
   }
@@ -58,19 +71,21 @@ function Router(rootFolderOfTemplates = "/pages") {
   this.navigate = navigate;
   function navigate(pathName = "/") {
     changePathName(pathName);
-    var url = rootFolderOfTemplates;
+    var route = {};
+    route.url = rootFolderOfTemplates;
+
     switch (pathName) {
       case "/thumbnail":
-        url += "/thumbnail/thumbnail.html";
+        route.url += "/thumbnail/thumbnail.html";
         break;
       case "/editor":
-        url += "/editor/editor.hmtl";
+        route.url += "/editor/editor.html";
+        route.loaderJS = loadEditorEvent;
         break;
       default:
-        url += "/home/home.html";
+        route.url += "/home/home.html";
         break;
     }
-    getcontentFromNetwork(url);
-    loadContentInPage();
+    getcontentFromNetwork(route);
   }
 }
