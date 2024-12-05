@@ -19,10 +19,26 @@ class Meme {
   }
 
   save() {
+    fetch(
+      `http://localhost:5679${this.#endpoint}${
+        undefined !== this.id ? "/" + this.id : ""
+      }`,
+      {
+        method: undefined !== this.id ? "PUT" : "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(this),
+      }
+    )
+      .then((r) => r.json())
+      .then((o) => {
+        Object.assign(this, o); //Tous les champs de o dans this => ce qui donne une instance de meme avec les valeurs de o
+      });
     // console.log("save at ", this.#endpoint, this);
-    console.log("save ", this.id, " at", this.#endpoint, this);
-    this.publicSave();
-    this.#privateSave();
+    // console.log("save ", this.id, " at", this.#endpoint, this);
+    // this.publicSave();
+    // this.#privateSave();
   }
 
   publicSave() {
@@ -35,4 +51,4 @@ class Meme {
 }
 
 let meme = new Meme();
-meme.save();
+// meme.save();
