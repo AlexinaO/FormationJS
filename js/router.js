@@ -8,7 +8,7 @@ var routes = [
     name: "Editor",
     path: "/edit",
     url: "/pages/editor/editor.html",
-    loaderJS: loadEditorEvent,
+    loaderJS: loadEditorEvents,
   },
   {
     nmae: "Home",
@@ -41,20 +41,23 @@ function Router(rootNode, rootFolderOfTemplates = "/pages") {
   var currentRoute = undefined;
   function changePathName(pathName) {
     history.pushState(null, null, pathName);
-    var route = {};
-    route.url = rootFolderOfTemplates;
-    switch (pathName) {
-      case "/thumbnail":
-        route.url += "/thumbnail/thumbnail.html";
-        break;
-      case "/editor":
-        route.url += "/editor/editor.html";
-        route.loaderJS = loadEditorEvent;
-        break;
-      default:
-        route.url += "/home/home.html";
-        break;
-    }
+    var route = undefined;
+
+    route = routes.find((route) => route.path === pathName);
+
+    // route.url = rootFolderOfTemplates;
+    // switch (pathName) {
+    //   case "/thumbnail":
+    //     route.url += "/thumbnail/thumbnail.html";
+    //     break;
+    //   case "/editor":
+    //     route.url += "/editor/editor.html";
+    //     route.loaderJS = loadEditorEvent;
+    //     break;
+    //   default:
+    //     route.url += "/home/home.html";
+    //     break;
+    // }
     route.pathName = pathName;
     currentRoute = route;
   }
@@ -105,8 +108,11 @@ function Router(rootNode, rootFolderOfTemplates = "/pages") {
   this.navigate = navigate;
   function navigate(pathName = "/") {
     changePathName(pathName);
-
-    getcontentFromNetwork(currentRoute);
+    if (undefined !== currentRoute.template) {
+      loadContentInPage(currentRoute);
+    } else {
+      getcontentFromNetwork(currentRoute);
+    }
   }
   navigate(location.pathname);
 }
