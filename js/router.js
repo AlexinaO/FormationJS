@@ -8,7 +8,7 @@ var routes = [
     name: "Editor",
     path: /^\/edit((\/)|(\/(?<id>\d+)))?$/,
     url: "/pages/editor/editor.html",
-    loaderJS: loadEditorEvents,
+    loaderJS: loadEditor,
   },
   {
     nmae: "Home",
@@ -62,7 +62,7 @@ function Router(rootNode, rootFolderOfTemplates = "/pages") {
   function loadContentInPage(routeObject) {
     rootNode.innerHTML = routeObject.template;
     if (typeof routeObject.loaderJS === "function") {
-      routeObject.loaderJS();
+      routeObject.loaderJS(currentRoute.params);
     }
   }
 
