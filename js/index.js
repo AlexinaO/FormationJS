@@ -28,13 +28,12 @@ function loadingDOM() {
  * Fonction de chargment des events de navbar
  */
 function loadNavbarEvents() {
-  let allLinks = document.querySelectorAll("nav a");
+  let allLinks = document.querySelectorAll("a");
   allLinks.forEach(function (element) {
     element.addEventListener("click", (evt) => {
       evt.preventDefault();
       //   history.pushState(null, null, element.href);
-      history.pushState(null, null, evt.target.href);
-      console.log("loadNavbarEvents");
+      router.navigate(evt.target.attributes.href.value);
     });
   });
 }
