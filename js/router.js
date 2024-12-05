@@ -1,18 +1,18 @@
 var routes = [
   {
     name: "Thumbnail",
-    path: "/thumbnail",
+    path: /^\/thumbnail$/,
     url: "/pages/thumbnail/thumbnail.html",
   },
   {
     name: "Editor",
-    path: "/edit",
+    path: /^\/edit((\/)|(\/(?<id>\d+)))?$/,
     url: "/pages/editor/editor.html",
     loaderJS: loadEditorEvents,
   },
   {
     nmae: "Home",
-    path: "/",
+    path: /\/?/,
     url: "/pages/home/home.html",
   },
 ];
