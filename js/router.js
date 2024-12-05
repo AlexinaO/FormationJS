@@ -19,10 +19,25 @@
  */
 function Router(rootNode, rootFolderOfTemplates = "/pages") {
   /* Définitions locales des propriétés et fonctions*/
-  var currentRoute = location.pathname;
+  var currentRoute = undefined;
   function changePathName(pathName) {
     history.pushState(null, null, pathName);
-    currentRoute = location.pathname;
+    var route = {};
+    route.url = rootFolderOfTemplates;
+    switch (pathName) {
+      case "/thumbnail":
+        route.url += "/thumbnail/thumbnail.html";
+        break;
+      case "/editor":
+        route.url += "/editor/editor.html";
+        route.loaderJS = loadEditorEvent;
+        break;
+      default:
+        route.url += "/home/home.html";
+        break;
+    }
+    route.pathName = pathName;
+    currentRoute = route;
   }
 
   /**
@@ -30,8 +45,8 @@ function Router(rootNode, rootFolderOfTemplates = "/pages") {
    * @param {Object} routeObject
    */
   function loadContentInPage(routeObject) {
-    rootNode.innerHTML = routeObject.responseText;
-    if (typeof (routeObject.loaderJS === "function")) {
+    rootNode.innerHTML = routeObject.template;
+    if (typeof routeObject.loaderJS === "function") {
       routeObject.loaderJS();
     }
   }
@@ -50,7 +65,7 @@ function Router(rootNode, rootFolderOfTemplates = "/pages") {
       }
       console.log("reponse", xhr.responseText);
       routeObject.template = xhr.responseText;
-      loadContentInPage(route);
+      loadContentInPage(routeObject);
     };
     xhr.send();
   }
@@ -71,21 +86,8 @@ function Router(rootNode, rootFolderOfTemplates = "/pages") {
   this.navigate = navigate;
   function navigate(pathName = "/") {
     changePathName(pathName);
-    var route = {};
-    route.url = rootFolderOfTemplates;
 
-    switch (pathName) {
-      case "/thumbnail":
-        route.url += "/thumbnail/thumbnail.html";
-        break;
-      case "/editor":
-        route.url += "/editor/editor.html";
-        route.loaderJS = loadEditorEvent;
-        break;
-      default:
-        route.url += "/home/home.html";
-        break;
-    }
-    getcontentFromNetwork(route);
+    getcontentFromNetwork(currentRoute);
   }
+  navigate(location.pathname);
 }
