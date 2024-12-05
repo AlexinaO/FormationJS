@@ -24,7 +24,7 @@ class Images extends Array {
         return r.json();
       })
       .then((o) => {
-        Object.assign(this, o);
+        return Object.assign(this, o); //si on ne met pas les accolades on peut mettre directement .then((0)=>Object.assign(this, o));
       });
   }
 }
