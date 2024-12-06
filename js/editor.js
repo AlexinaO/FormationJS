@@ -5,14 +5,24 @@ let documentFormEditor = undefined;
 /*permet d'avoir le chargement de tous les évènements de cette partie*/
 function loadEditor(params) {
   console.log(params);
-  loadEditorEvents();
-  promiseImage.then((arrayImages) => {
-    loadSelectImagesInForm(arrayImages);
-  });
   documentSVGNode = document.querySelector("svg");
   documentFormEditor = document.forms["editor-form"];
-  updateForm();
-  updateSVG(currentMeme, documentSVGNode);
+  loadEditorEvents();
+
+  const promiseResources = Promise.all([promiseImage, promiseMemes]).then(
+    (arrayImagesMemes) => {
+      loadSelectImagesInForm(arrayImagesMemes[0]);
+      currentMeme = arrayImagesMemes[1].find((m) => m.id === Number(params.id));
+      if (undefined !== params.id && undefined === currentMeme) {
+        return router.navigate(404);
+      }
+      if (undefined === currentMeme) {
+        currentMeme = new Meme();
+      }
+      updateForm();
+      updateSVG(currentMeme, documentSVGNode);
+    }
+  );
 }
 
 function treatInputStringEventChange(evt) {

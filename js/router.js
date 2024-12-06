@@ -12,10 +12,47 @@ var routes = [
   },
   {
     nmae: "Home",
-    path: /\/?/,
+    path: /^\/?$/,
     url: "/pages/home/home.html",
   },
 ];
+
+var errorsRoutes = {
+  404: {
+    name: "error 404 not found",
+    url: "/pages/errors/404.html",
+    status: 404,
+    statusText: "not found",
+    loaderJs: function () {
+      /* on ne fait pas une arrow function pour que le this concerne l'objet route*/
+      document.title = `${location.href} ${this.status} ${this.statusText}`;
+      console.error(this.name + " chemin :" + this.pathName, location.href);
+      document.querySelectorAll("#wrapper a").forEach((a) =>
+        a.addEventListener("click", (evt) => {
+          evt.preventDefault();
+          router.navigate("/");
+        })
+      );
+    },
+  },
+  500: {
+    name: "error 500 internal server error",
+    url: "/pages/errors/500.html",
+    status: 500,
+    statusText: "internal server error",
+    loaderJs: function () {
+      document.title = `${location.href} ${this.status} ${this.statusText}`;
+      console.error(this.name + " chemin :" + this.pathName, location.href);
+      document.querySelector("#message").innerHTML = this.message;
+      document.querySelectorAll("#wrapper a").forEach((a) =>
+        a.addEventListener("click", (evt) => {
+          evt.preventDefault();
+          router.navigate("/");
+        })
+      );
+    },
+  },
+};
 
 /*
 	public -> sur this
@@ -40,19 +77,24 @@ function Router(rootNode, rootFolderOfTemplates = "/pages") {
   /* Définitions locales des propriétés et fonctions*/
   var currentRoute = undefined;
   function changePathName(pathName) {
-    history.pushState(null, null, pathName);
-    var route = undefined;
-    var m;
+    if (undefined === currentRoute) {
+      history.pushState(null, null, pathName);
+      var route = undefined;
+      var m;
 
-    route = routes.find((r) => {
-      m = r.path.exec(pathName);
-      return m !== null;
-    });
-    if (undefined !== route) {
-      route.params = m.groups;
+      route = routes.find((r) => {
+        m = r.path.exec(pathName);
+        return m !== null;
+      });
+      if (undefined !== route) {
+        route.params = m.groups;
+      } else {
+        route.errorsRoutes[404];
+      }
+      currentRoute = route;
     }
-    route.pathName = pathName;
-    currentRoute = route;
+
+    currentRoute.pathName = pathName;
   }
 
   /**
@@ -99,7 +141,12 @@ function Router(rootNode, rootFolderOfTemplates = "/pages") {
    * @param {string} pathName path to navigate (starts with '/')
    */
   this.navigate = navigate;
-  function navigate(pathName = "/") {
+  function navigate(pathName = "/", message) {
+    currentRoute = undefined;
+    if (Number.isInteger(pathName)) {
+      currentRoute = errorsRoutes[pathName];
+      currentRoute.message = message;
+    }
     changePathName(pathName);
     if (undefined !== currentRoute.template) {
       loadContentInPage(currentRoute);
