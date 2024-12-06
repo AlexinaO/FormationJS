@@ -1,4 +1,6 @@
-const updateSVG = (meme, SVGRootNode) => {
+import { images } from "./metier/Images.js";
+
+export const updateSVG = (meme, SVGRootNode) => {
   /* on récupère l'image du meme*/
   const img = images.find((i) => i.id === meme.imageId);
 

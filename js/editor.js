@@ -2,6 +2,7 @@ import { Meme } from "./metier/Meme.js";
 import { router } from "./router.js";
 import { images, promiseImage } from "./metier/Images.js";
 import { promiseMemes } from "./metier/Memes.js";
+import { updateSVG } from "./commonSvgFunctions.js";
 
 let currentMeme = new Meme();
 let documentSVGNode = undefined;

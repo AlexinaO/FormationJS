@@ -1,10 +1,13 @@
 import { loadEditor } from "../editor.js";
+import { loadThumbnail } from "../thumbnail.js";
 
 export const routes = [
   {
     name: "Thumbnail",
     path: /^\/thumbnail$/,
     url: "/pages/thumbnail/thumbnail.html",
+    loaderJS: loadThumbnail,
+    cssFile: "/pages/thumbnail/thumbnail.css",
   },
   {
     name: "Editor",
