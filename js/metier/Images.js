@@ -8,6 +8,10 @@ class Images extends Array {
     super(); //Ce qui appartient au parent
   }
 
+  find(params) {
+    return super.find(params);
+  }
+
   /**
    * Chargement de la liste d'images à partir du serveur REST
    * @returns {Promise<Images>} promise<Images> (déjà lu) du fecth
