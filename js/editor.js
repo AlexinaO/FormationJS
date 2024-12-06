@@ -1,5 +1,6 @@
 let currentMeme = new Meme();
 let documentSVGNode = undefined;
+let documentFormEditor = undefined;
 
 /*permet d'avoir le chargement de tous les évènements de cette partie*/
 function loadEditor(params) {
@@ -9,6 +10,9 @@ function loadEditor(params) {
     loadSelectImagesInForm(arrayImages);
   });
   documentSVGNode = document.querySelector("svg");
+  documentFormEditor = document.forms["editor-form"];
+  updateForm();
+  updateSVG(currentMeme, documentSVGNode);
 }
 
 function treatInputStringEventChange(evt) {
@@ -155,4 +159,34 @@ const updateSVG = (meme, SVGRootNode) => {
     );
     SVGRootNode.insertBefore(imageSVG, textSVG);
   }
+};
+
+const updateForm = () => {
+  /*MAJ select*/
+  //   document.forms["editor-form"]["imageId"].value = currentMeme.imageId;
+  documentFormEditor["imageId"].value = currentMeme.imageId;
+  /*MAJ text*/
+  //   document.forms["editor-form"]["text"].value = currentMeme.text;
+  documentFormEditor["text"].value = currentMeme.text;
+  /*MAJ x*/
+  //   document.forms["editor-form"]["x"].value = currentMeme.x;
+  documentFormEditor["x"].value = currentMeme.x;
+  /*MAJ Y*/
+  //   document.forms["editor-form"]["y"].value = currentMeme.y;
+  documentFormEditor["y"].value = currentMeme.y;
+  /*MAJ font-size*/
+  //   document.forms["editor-form"]["fontSize"].value = currentMeme.fontSize;
+  documentFormEditor["fontSize"].value = currentMeme.fontSize;
+  /*MAJ font-weight*/
+  //   document.forms["editor-form"]["fontWeight"].value = currentMeme.fontWeight;
+  documentFormEditor["fontWeight"].value = currentMeme.fontWeight;
+  /*MAJ color*/
+  //   document.forms["editor-form"]["color"].value = currentMeme.color;
+  documentFormEditor["color"].value = currentMeme.color;
+  /*MAJ underline*/
+  //   document.forms["editor-form"]["underline"].checked = currentMeme.underline;
+  documentFormEditor["underline"].checked = currentMeme.underline;
+  /*MAJ italic*/
+  //   document.forms["editor-form"]["italic"].checked = currentMeme.color;
+  documentFormEditor["italic"].checked = currentMeme.color;
 };
