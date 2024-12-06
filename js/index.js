@@ -1,6 +1,3 @@
-// import "./router.js"; /*fait une copie du fichier et accès à tout ce qu'il y dedans */
-
-// import { initRouter, router } from "./router.js";
 import { routes } from "./config/routes.js";
 import { router, initRouter } from "./router.js";
 
@@ -14,8 +11,6 @@ function loadingDOM() {
   loadNavbarEvents();
 }
 
-// loadingDOM();
-
 /**
  * Fonction de chargment des events de navbar
  */
@@ -24,7 +19,6 @@ function loadNavbarEvents() {
   allLinks.forEach(function (element) {
     element.addEventListener("click", (evt) => {
       evt.preventDefault();
-      //   history.pushState(null, null, element.href);
       router.navigate(evt.target.attributes.href.value);
     });
   });
