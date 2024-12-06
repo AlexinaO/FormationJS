@@ -1,8 +1,8 @@
 import { Meme } from "./metier/Meme.js";
 import { router } from "./router.js";
-import { images, promiseImage } from "./metier/Images.js";
-import { promiseMemes } from "./metier/Memes.js";
+import { promiseImage } from "./metier/Images.js";
 import { updateSVG } from "./commonSvgFunctions.js";
+import { memes, promiseMemes } from "./metier/Memes.js";
 
 let currentMeme = new Meme();
 let documentSVGNode = undefined;
@@ -50,7 +50,7 @@ function loadEditorEvents() {
   console.log("route", router.getCurrentRoute());
   document.forms["editor-form"].addEventListener("submit", function (evt) {
     evt.preventDefault();
-    currentMeme.save();
+    currentMeme.save().then((m) => memes.addMeme(m));
   });
   document.forms["editor-form"]["text"].addEventListener("input", (evt) => {
     treatInputStringEventChange(evt);

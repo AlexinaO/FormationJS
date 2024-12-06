@@ -30,10 +30,11 @@ export class Meme {
         },
         body: JSON.stringify(this),
       }
-    ).then((r) => r.json());
-    promise.then((o) => {
-      Object.assign(this, o); //Tous les champs de o dans this => ce qui donne une instance de meme avec les valeurs de o
-    });
+    )
+      .then((r) => r.json())
+      .then((o) => {
+        Object.assign(this, o); //Tous les champs de o dans this => ce qui donne une instance de meme avec les valeurs de o
+      });
     return promise;
     // console.log("save at ", this.#endpoint, this);
     // console.log("save ", this.id, " at", this.#endpoint, this);

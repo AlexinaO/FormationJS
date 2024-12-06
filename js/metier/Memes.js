@@ -39,7 +39,20 @@ class Memes extends Array {
         return this;
       });
   }
+
+  /**
+   * ajout ou update un meme existant
+   * @param {Meme} meme
+   */
+  addMeme(meme) {
+    const position = this.findIndex((m) => m.id === meme.id);
+    if (position == -1) {
+      this.push(meme);
+    } else {
+      this[position] = meme;
+    }
+  }
 }
 
-const memes = new Memes();
+export const memes = new Memes();
 export const promiseMemes = memes.load();
