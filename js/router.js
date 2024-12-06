@@ -156,3 +156,9 @@ function Router(rootNode, rootFolderOfTemplates = "/pages") {
   }
   navigate(location.pathname);
 }
+
+/*on exporte l'instance de router pour que cela soit disponible pour tout le monde*/
+export let router;
+export const initRouter = (routerDomNode) => {
+  router = new Router(routerDomNode);
+};

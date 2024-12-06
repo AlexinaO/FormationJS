@@ -1,6 +1,11 @@
+// import "./router.js"; /*fait une copie du fichier et accès à tout ce qu'il y dedans */
+
+import { initRouter, router } from "./router.js";
+
 /*Fichier principal de l'application*/
 
 function loadingDOM() {
+  initRouter(document.getElementById("wrapper"));
   document.querySelector("#js-notification").remove();
   document.querySelector("#header button").remove();
   //   jsnotif.style.backgroundColor = "green";
@@ -39,5 +44,3 @@ function loadNavbarEvents() {
 }
 
 document.addEventListener("DOMContentLoaded", loadingDOM);
-
-var router = new Router(document.getElementById("wrapper"));
