@@ -1,21 +1,4 @@
-var routes = [
-  {
-    name: "Thumbnail",
-    path: /^\/thumbnail$/,
-    url: "/pages/thumbnail/thumbnail.html",
-  },
-  {
-    name: "Editor",
-    path: /^\/edit((\/)|(\/(?<id>\d+)))?$/,
-    url: "/pages/editor/editor.html",
-    loaderJS: loadEditor,
-  },
-  {
-    nmae: "Home",
-    path: /^\/?$/,
-    url: "/pages/home/home.html",
-  },
-];
+let routes = undefined;
 
 var errorsRoutes = {
   404: {
@@ -159,6 +142,7 @@ function Router(rootNode, rootFolderOfTemplates = "/pages") {
 
 /*on exporte l'instance de router pour que cela soit disponible pour tout le monde*/
 export let router;
-export const initRouter = (routerDomNode) => {
+export const initRouter = (routesConfig, routerDomNode) => {
+  routes = routesConfig;
   router = new Router(routerDomNode);
 };
