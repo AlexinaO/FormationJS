@@ -1,3 +1,5 @@
+import { loadEditor } from "../editor.js";
+
 export const routes = [
   {
     name: "Thumbnail",

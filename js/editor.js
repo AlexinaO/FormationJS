@@ -1,9 +1,14 @@
+import { Meme } from "./metier/Meme.js";
+import { router } from "./router.js";
+import { images, promiseImage } from "./metier/Images.js";
+import { promiseMemes } from "./metier/Memes.js";
+
 let currentMeme = new Meme();
 let documentSVGNode = undefined;
 let documentFormEditor = undefined;
 
 /*permet d'avoir le chargement de tous les évènements de cette partie*/
-function loadEditor(params) {
+export function loadEditor(params) {
   console.log(params);
   documentSVGNode = document.querySelector("svg");
   documentFormEditor = document.forms["editor-form"];

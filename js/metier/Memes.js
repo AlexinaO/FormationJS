@@ -41,5 +41,5 @@ class Memes extends Array {
   }
 }
 
-var memes = new Memes();
-var promiseMemes = memes.load();
+const memes = new Memes();
+export const promiseMemes = memes.load();

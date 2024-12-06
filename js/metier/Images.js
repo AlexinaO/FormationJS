@@ -33,5 +33,5 @@ class Images extends Array {
   }
 }
 
-const images = new Images();
-const promiseImage = images.load();
+export const images = new Images();
+export const promiseImage = images.load();

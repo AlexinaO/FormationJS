@@ -1,7 +1,7 @@
 /**
  * Class de gestion  d'un meme
  */
-class Meme {
+export class Meme {
   id = undefined; //gérée par le serveur
   text = "";
   x = 0;
