@@ -15,7 +15,7 @@ function loadingDOM() {
  * Fonction de chargment des events de navbar
  */
 function loadNavbarEvents() {
-  let allLinks = document.querySelectorAll("a");
+  const allLinks = document.querySelectorAll("a");
   allLinks.forEach(function (element) {
     element.addEventListener("click", (evt) => {
       evt.preventDefault();
